@@ -1,0 +1,20 @@
+<ActionBar title="Tarabezah ">
+</ActionBar>
+
+<GridLayout>
+    <ListView [items]="items">
+        <ng-template let-item="item"  >
+         
+            <GridLayout margin="0" columns="*,2*" [nsRouterLink]="['/store', item.id]">
+                <Image col="0" stretch="aspectFill" src="{{ item.image }}" style="height: 300px; border-radius: 15%;">
+                </Image>
+                <GridLayout col="1" verticalAlignment="center">
+                    <StackLayout backgroundColor="transparent">
+                        <Label text="{{ item.name }}"></Label>
+                        <Label text="{{ item.description }}"></Label>
+                    </StackLayout>
+                </GridLayout>
+            </GridLayout>
+        </ng-template>
+    </ListView>
+</GridLayout>

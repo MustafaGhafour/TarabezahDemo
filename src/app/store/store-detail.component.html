@@ -1,0 +1,44 @@
+<ActionBar title="{{store.name}}"></ActionBar>
+
+<scroll-view *ngIf="store">
+    <GridLayout>
+        <GridLayout columns="*," rows="5*,3*,*,*" verticalAlignment="top" >
+            <Image col="0" row="0" style="width: 100%;" src="{{ store.image }}">
+            </Image>
+            <StackLayout margin="10" col="0" row="1" backgroundColor="transparent"  >
+                <Label class="h1 text-left" text="{{ store.name }}" style="text-transform: uppercase;"></Label>
+                <Label class="h3 text-left" text="{{ store.description }}" textWrap="true"></Label>
+                <Label class="h6 text-left" text="Contact us : {{ store.email }}" textWrap="true"></Label>
+                <Label class="hr text-left" ></Label>
+            </StackLayout>
+
+            <StackLayout *ngIf="related && related?.length > 0" margin="10" col="0" row="2" backgroundColor="transparent"  >
+                <Label class="h3  text-left" text="Related Stores" style="text-transform: uppercase;font-weight: bold;"></Label>
+            </StackLayout>
+
+            <GridLayout row="3">
+                <ListView  [style.height]="related?.length * 350 + 'px'" *ngIf="related && related?.length > 0" [items]="related" >
+                    <ng-template let-item="item"  >
+                     
+                        <GridLayout (tap)="loadStore(item.id)" margin="0" columns="*,2*" >
+                            <Image col="0" stretch="aspectFill" src="{{ item.image }}" style="height: 300px; border-radius: 15%;">
+                            </Image>
+                            <GridLayout col="1" verticalAlignment="center">
+                                <StackLayout backgroundColor="transparent">
+
+                                    <Label text="{{ item.name }}"></Label>
+                                    <Label text="{{ item.description }}"></Label>
+                                </StackLayout>
+                            </GridLayout>
+                        </GridLayout>
+                    </ng-template>
+                </ListView>
+            </GridLayout>
+           
+        </GridLayout>
+       
+    </GridLayout>
+</scroll-view>
+
+
+
